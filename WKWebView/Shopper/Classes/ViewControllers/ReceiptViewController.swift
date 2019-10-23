@@ -17,7 +17,8 @@ import UIKit
 import WebKit
 
 class ReceiptViewController: UIViewController {
-    @IBOutlet weak var webPreviewWK: WKWebView!
+    @IBOutlet var webPreviewWK: WKWebView!
+    @IBOutlet var optionsBarButtonItem: UIBarButtonItem!
     //@IBOutlet weak var webPreview: UIWebView!
 
     var HTMLContent: String?
@@ -38,21 +39,18 @@ class ReceiptViewController: UIViewController {
 
     @IBAction func chooseSendOptions(_ sender: UIBarButtonItem) {
         if let html = HTMLContent {
-            ReceiptController.shared.exportHTMLContentToPDF(HTMLContent: html)
-            showReceiptOptionsAlert()
+            let filename = ReceiptController.shared.exportHTMLContentToPDF(HTMLContent: html)
+            showReceiptOptionsAlert(filename)
         }
     }
     
     // MARK: - UIAlertController (Receipt processing)
     
-    func showReceiptOptionsAlert() {
+    func showReceiptOptionsAlert(_ filename: String) {
         let alertController = UIAlertController(title: "Options", message: "Your receipt has been successfully printed to a PDF file.\n\nWhat do you want to do now?", preferredStyle: .alert)
 
-        let actionPreview = UIAlertAction(title: "Preview it", style: .default) { (action) in
-            let pdfFilePath = self.webPreviewWK.exportAsPdfFromWebView()
-
-            let request = NSURLRequest(url: NSURL(string: pdfFilePath)! as URL)
-            self.webPreviewWK.load(request as URLRequest)
+        let actionPreview = UIAlertAction(title: "Print it", style: .default) {[weak self] (action) in
+            self!.webPreviewWK.printPDF(path: filename, printButton: self!.optionsBarButtonItem)
         }
         let actionEmail = UIAlertAction(title: "Send by Email", style: .default) {[weak self] (action) in
             ReceiptController.shared.sendEmail(weakSelf: self!)
@@ -69,6 +67,17 @@ class ReceiptViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    func webViewToImage() {
+        let config = WKSnapshotConfiguration()
+        config.rect = CGRect(x: 0, y: 0, width: 150, height: 50)
+
+        webPreviewWK.takeSnapshot(with: config) { image, error in
+            if let image = image {
+                print(image.size)
+            }
+        }
+    }
+
 }
 
 extension UIViewController: WKNavigationDelegate {

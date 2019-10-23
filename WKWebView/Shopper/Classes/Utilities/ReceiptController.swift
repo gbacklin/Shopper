@@ -127,7 +127,7 @@ class ReceiptController: NSObject {
         return nil
     }
 
-    func exportHTMLContentToPDF(HTMLContent: String) {
+    func exportHTMLContentToPDF(HTMLContent: String) -> String {
         let printPageRenderer = CustomPrintPageRenderer()
         
         let printFormatter = UIMarkupTextPrintFormatter(markupText: HTMLContent)
@@ -139,6 +139,7 @@ class ReceiptController: NSObject {
         pdfData?.write(toFile: pdfFilename, atomically: true)
         
         print(pdfFilename!)
+        return pdfFilename!
     }
 
     func drawPDFUsingPrintPageRenderer(printPageRenderer: UIPrintPageRenderer) -> NSData! {

@@ -124,6 +124,27 @@ extension WKWebView {
             return ""
         }
     }
+    
+    func printPDF(path: String, printButton: UIBarButtonItem) {
+        let printController = UIPrintInteractionController.shared
+
+        let printInfo = UIPrintInfo(dictionary:nil)
+        printInfo.outputType = UIPrintInfo.OutputType.general
+        printInfo.jobName = "PrintToPDF"
+        printInfo.duplex = UIPrintInfo.Duplex.none
+        printInfo.orientation = UIPrintInfo.Orientation.portrait
+
+        //New stuff
+        printController.printPageRenderer = nil
+        printController.printingItems = nil
+        printController.printingItem = URL(fileURLWithPath: path)
+        //New stuff
+
+        printController.printInfo = printInfo
+        printController.showsNumberOfCopies = true
+
+        printController.present(from: printButton, animated: true, completionHandler: nil)
+    }
 }
 
 extension UIPrintPageRenderer {

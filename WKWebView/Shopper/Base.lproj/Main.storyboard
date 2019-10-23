@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hcs-lB-3KB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hcs-lB-3KB">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15508"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -126,7 +126,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMB-Ve-7pX">
                                 <rect key="frame" x="20" y="775" width="374" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ToL-r1-Mhz">
@@ -220,6 +220,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="optionsBarButtonItem" destination="7MM-6I-Imm" id="IU6-s0-d4o"/>
                         <outlet property="webPreviewWK" destination="Zp2-DK-iB1" id="SRl-1O-6ZU"/>
                     </connections>
                 </viewController>
@@ -504,9 +505,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="cart" catalog="system" width="64" height="52"/>
-        <image name="folder" catalog="system" width="64" height="48"/>
-        <image name="folder.badge.plus" catalog="system" width="64" height="44"/>
+        <image name="cart" catalog="system" width="64" height="50"/>
+        <image name="folder" catalog="system" width="64" height="46"/>
+        <image name="folder.badge.plus" catalog="system" width="64" height="42"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="tDC-rv-a5r"/>
